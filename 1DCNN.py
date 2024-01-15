@@ -66,15 +66,15 @@ validation_losses = []
 test_losses = []
 
 
-df = pd.read_csv("D:\S\start\code\seeds\\firstdata\double\\train.csv",  header=None)
+df = pd.read_csv("D:\S\start\code\Data\SeedData\\firstdata\double\\train.csv",  header=None)
 train_targets = df.values[:,224]  #? 这里修改为224
 train_data = df.values[:,19:200]  # 扫描的数据中的行 列
 #print(train_targets)
-df2 = pd.read_csv("D:\S\start\code\seeds\\firstdata\double\\test.csv",  header=None)
+df2 = pd.read_csv("D:\S\start\code\Data\SeedData\\firstdata\double\\test.csv",  header=None)
 test_targets = df2.values[:,224]  #? 这里修改为224
 test_data = df2.values[:,19:200]
 #print(df2.head(5))
-df3 = pd.read_csv("D:\S\start\code\seeds\\firstdata\double\\val.csv", header=None)
+df3 = pd.read_csv("D:\S\start\code\Data\SeedData\\firstdata\double\\val.csv", header=None)
 pre_targets = df3.values[:,224]  #? 这里修改为224
 pre_data = df3.values[:,19:200]  
 
@@ -311,12 +311,12 @@ for i in range(epoch):
 
     total_test_step = total_test_step + 1
 
-    # 保留每一轮的模型
+    # 保留每一轮的模型，zh.state_dict()为保存参数
     # torch.save(zh.state_dict(),"baizhuo333_CNN_method_{}.pth".format(i+1))
     
     # 临时保存182轮模型
-    # if i == 181:
-    #     torch.save(zh.state_dict(),"shuidao_CNN_method_{}.pth".format(i+1))
+    if i == 181:
+        torch.save(zh, "shuidao_CNN_method_{}.pth".format(i+1))
         
     end_time = time.time()
     print("Runtime:{}".format(end_time-start_time))    
